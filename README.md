@@ -1,1 +1,1 @@
-# python-algo
+# algorithm with python for coding test
