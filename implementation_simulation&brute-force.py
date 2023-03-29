@@ -88,3 +88,91 @@ for i in range(h+1):
                 count += 1
 
 print(count)
+
+# [문제] 왕실의 나이트: 8 x 8 좌표 평면상에서 나이트의 위치가 주어졌을 때 나이트가 이동할 수 있는 경우의 수를
+# 출력하는 프로그램을 작성하시오. 왕실의 정원에서 행 위치를 표현할 대는 1부터 8로 표현하며, 열 위치를 표현할 때는 
+# a부터 h로 표현합니다.
+
+init = list(map(str, input()))
+x_board = ['a','b','c','d','e','f','g','h']
+count = 0
+
+for i in range(len(x_board)):
+    if init[0] == x_board[i]:
+        x = int(i) + 1
+
+y = int(init[1])
+
+move_x = [-1,-2,-2,-1,1,2,2,1]
+move_y = [2,1,-1,-2,-2,-1,1,2]
+
+for j in range(len(x_board)):
+    nx = x + move_x[j]
+    ny = y + move_y[j]
+    if nx < 1 or nx > 8 or ny < 1 or ny > 8:
+      continue
+    count += 1
+  
+print(count)
+
+# ************************  [책 해답]  **************************************
+
+# uni-code로 변환하여서 입력받은 column값을 숫자로 변경
+input_data = input()
+row = int(input_data[1])
+column = int(ord(input_data[0])) - int(ord('a')) + 1
+print(row, column)
+
+# 나이트가 이동할 수 있는 8가지 방향에 대해서 좌푣값으로 한꺼번에 정의
+steps = [(-2, -1), (-1, -2), (1, -2), (2, -1), (2, 1), (1, 2), (-1, 2), (-2, 1)]
+
+# 8가지 방향에 대하여 각 위치로 이동이 가능한지 확인
+result = 0
+for step in steps:
+    # 이동하고자 하는 위치 확인
+    next_row = row + step[0]
+    next_column = column + step[1]
+    # 해당 위치로 이동이 가능하다면 카운트 증가
+    if next_row >= 1 and next_row <= 8 and next_column >= 1 and next_column <= 8:
+        result += 1
+
+print(result)
+
+
+# [문제] 문자열 재정렬: 알파벳 대문자와 숫자 (0~9)로만 구성된 문자열이 입력으로 주어집니다. 이때 모든 알파벳을
+# 오름차순으로 정렬하여 이어서 출력한 뒤에, 그 뒤에 모든 숫자를 더한 값을 이어서 출력합니다.
+
+input_data = input()
+number = ['0','1','2','3','4','5','6','7','8','9']
+
+count = 0
+
+for j in input_data:
+  if j in number:
+    j = int(j)
+    count += j
+    
+letter = sorted([i for i in input_data if i not in number]).append(str(count))
+
+result = ''.join(map(str, letter))
+
+print(type(count))
+
+# ************************  [책 해답]  **************************************
+
+data = input()
+result = []
+value = 0
+
+for x in data:
+    if x.isalpha():
+        result.append
+    else:
+        value += int(x)
+
+result.sort()
+
+if value != 0:
+    result.append(str(value))
+
+print(''.join(result))
